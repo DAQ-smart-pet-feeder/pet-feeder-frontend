@@ -1,0 +1,32 @@
+/* FeederDetail.css */
+
+.feeder-container {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adjusts spacing between the two main divs */
+}
+
+.data-container {
+    /* Add any specific styles for your data container here */
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive design: Stack components on smaller screens */
+@media (max-width: 768px) {
+    .feeder-container {
+        flex-direction: column;
+    }
+
+    .image-container {
+        margin-top: 20px;
+    }
+}
+
+.lock-font {
+    font-family: 'Gaegu', sans-serif;
+}
