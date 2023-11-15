@@ -18,6 +18,12 @@
     background-color: rgb(220, 220, 220);
 }
 
+.add-box {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgb(220, 220, 220);
+}
+
 .meal-plan-container {
     text-align: center;
     margin-top: 50px;
@@ -32,3 +38,6 @@
     margin-bottom: 20px;
 }
 
+.button-add {
+    font-size: x-large;
+}

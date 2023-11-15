@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
+import Modal from '../components/Modal';
 import '../styles/MealPlan.css';
 
 const MealPlan = () => {
@@ -30,23 +31,32 @@ const MealPlan = () => {
     };
 
     return (
-        <>
+        <div className='lock-font'>
             <NavBar />
-            <div className='lock-font'>
-                <button onClick={() => setModalVisible(true)}></button>
-                <div className="meal-plan-container">
+            <div className='meal-plan-container'>
+                <button onClick={() => setModalVisible(true)}>Add Schedule</button>
                 {mealPlans.length === 0 ? (
                     <div className="no-schedule-message">
-                        <p>No Schedules Set</p>
-                        <button onClick={() => setModalVisible(true)}>Add Schedule</button>
+                        <h1>No Schedules Set</h1>
                     </div>
                 ) : (
                     mealPlans.map((plan, index) => (
-                        // ... Render each meal plan
-                        <p>test</p>
+                        <div key={index} className="meal-plan-box">
+                            <p>Time: {plan.time}</p>
+                            <p>Days: {plan.days.join(', ')}</p>
+                            <p>Portion: {plan.portion}</p>
+                            <label>
+                                Enable Schedule:
+                                <input
+                                    type="checkbox"
+                                    checked={plan.enabled}
+                                    onChange={() => toggleMealPlan(index)}
+                                />
+                            </label>
+                        </div>
                     ))
                 )}
-                {modalVisible && (
+                {/* {modalVisible && (
                     <div className="modal">
                         <form onSubmit={handleSave}>
                             <fieldset>
@@ -72,28 +82,15 @@ const MealPlan = () => {
                             <button type="submit">Save</button>
                         </form>
                     </div>
-                )}
-                {mealPlans.map((plan, index) => (
-                    <div key={index} className="meal-plan-box">
-                        <p>Time: {plan.time}</p>
-                        <p>Days: {plan.days.join(', ')}</p>
-                        <p>Portion: {plan.portion}</p>
-                        <label>
-                            Enable Schedule:
-                            <input
-                                type="checkbox"
-                                checked={plan.enabled}
-                                onChange={() => toggleMealPlan(index)}
-                            />
-                        </label>
-                    </div>
-                ))}
-                </div>
+                )} */}
+                <Modal 
+                    isVisible={modalVisible} 
+                    onClose={() => setModalVisible(false)} 
+                    onSave={handleSave} 
+                />
             </div>
-        </>
+        </div>
     );
 };
 
 export default MealPlan;
-
-// ต้องให้ส่งไป backend หลังจากกด save แล้ว เวลาที่กลับมาหน้านี้จะได้แสดงผลได้

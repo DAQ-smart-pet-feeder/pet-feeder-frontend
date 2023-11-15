@@ -1,4 +1,3 @@
-// FeedingStatus.js
 import React from 'react';
 
 const FeedingStatus = ({ status }) => {

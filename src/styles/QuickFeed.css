@@ -1,0 +1,143 @@
+.quick-feed-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 3px solid #000000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+.boxes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px
+}
+
+.feed-box {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.feed-box:hover {
+    background-color: #f0f0f0;
+}
+
+.feed-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Gaegu', sans-serif;
+    font-size: medium;
+}
+
+.swal2-title {
+    font-family: 'Gaegu', cursive;
+    font-weight: bold;
+}
+
+.swal2-actions .swal2-confirm {
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    font-family: Avenir, sans-serif;
+    color: #111;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+
+.cta {
+    position: relative;
+    margin: auto;
+    padding: 19px 22px;
+    transition: all 0.2s ease;
+}
+
+.cta:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 28px;
+    background: #247ba2;
+    width: 56px;
+    height: 56px;
+    transition: all 0.3s ease;
+}
+
+.cta span {
+    position: relative;
+    color: black;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.cta svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #111;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+    width: 100%;
+    background: #247ba2;
+}
+
+.cta:hover svg {
+    transform: translateX(0);
+}
+
+.cta:active {
+    transform: scale(0.96);
+}
+
+.swal2-popup .swal2-styled.swal2-confirm {
+    background-color: #aaa !important;
+    font-family: 'gaegu', cursive;
+}
+
+.swal2-popup .swal2-styled:focus {
+    background-color: #247ba2 !important;
+    font-family: 'gaegu', cursive;
+}
+
+.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover {
+    background-color: #247ba2 !important;
+}
