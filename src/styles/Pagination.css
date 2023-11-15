@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.page-link:hover {
+    text-decoration: underline;
+}

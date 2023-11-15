@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FeederDetail from './pages/FeederDetail';
 import MealPlan from './pages/MealPlan';
 import FeedRecord from './pages/FeedRecord';
+import BehaviorRecord from './pages/BehaviorRecord';
 
 const App = () => (
   <BrowserRouter>
@@ -11,10 +12,10 @@ const App = () => (
       <Route path="/" element={<FeederDetail />} />
       <Route path="/mealplan" element={<MealPlan />} />
       <Route path="/records" element={<FeedRecord />} />
-      {/* Optional: Add a route for handling unmatched paths */}
+      <Route path="/behavior" element={<BehaviorRecord />} />
       {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
   </BrowserRouter>
 );
 
-export default App; // Export MainRouter instead of App
+export default App;

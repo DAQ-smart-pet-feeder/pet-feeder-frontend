@@ -1,22 +1,29 @@
-/* FeederDetail.css */
-
 .feeder-container {
+    font-size: larger;
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Adjusts spacing between the two main divs */
+    justify-content: space-between;
 }
 
 .data-container {
-    /* Add any specific styles for your data container here */
+    margin-left: 45px;
+}
+
+.block {
+    border: 2px solid #333;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 .image-container img {
     max-width: 100%;
     height: auto;
+    margin-right: 200px
 }
 
-/* Responsive design: Stack components on smaller screens */
+
 @media (max-width: 768px) {
     .feeder-container {
         flex-direction: column;

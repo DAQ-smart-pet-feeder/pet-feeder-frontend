@@ -1,0 +1,76 @@
+.lock-font {
+    font-family: 'Gaegu', cursive;
+}
+
+.behavior-record-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    min-height: 80vh;
+}
+
+.date-group {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.date-header {
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.behavior-record {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.behavior-record:last-child {
+    border-bottom: none;
+}
+
+.behavior-record span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #555;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color: #eee;
+}
+
+.page-link[disabled] {
+    color: #aaa;
+    cursor: default;
+}
+
+.page-link[disabled]:hover {
+    background-color: transparent;
+}

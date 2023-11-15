@@ -1,4 +1,3 @@
-// FoodTankData.js
 import React from 'react';
 
 const FoodTankData = ({ humidity, temp }) => {

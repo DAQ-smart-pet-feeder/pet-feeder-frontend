@@ -1,0 +1,36 @@
+.food-record-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    min-height: 80vh;
+}
+
+.date-group {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.date-header {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}
+
+.feeding-record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feeding-record span {
+    margin-right: 10px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/NavBar.css'; // Make sure this path is correct
+import '../styles/NavBar.css';
 
 const Navbar = () => {
     return (
@@ -17,7 +17,10 @@ const Navbar = () => {
                         <Link to="/mealplan">Meal Plan</Link>
                     </li>
                     <li>
-                        <Link to="/record">Feed Record</Link>
+                        <Link to="/records">Feed Record</Link>
+                    </li>
+                    <li>
+                        <Link to="/behavior">Behavior Record</Link>
                     </li>
                     <li>
                         <Link to="/contact">More</Link>

@@ -2,26 +2,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 80px;
     background-color: #333;
     color: white;
+    font-size: medium;
 }
 
 .navbar .logo h1 {
-    margin-left: 20px; /* Adjust as needed */
+    margin-left: 20px;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    margin-right: 20px; /* Adjust as needed */
+    margin-right: 20px;
 }
 
 .navbar li {
-    margin: 0 10px;
+    margin: 0 30px;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
 }
+
+.navbar a:hover {
+    color: #4c7faf;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
