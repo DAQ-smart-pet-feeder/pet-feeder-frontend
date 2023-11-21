@@ -13,49 +13,62 @@ import CIcon from '@coreui/icons-react';
 import { cilHouse, cilCloudy, cilPaw } from '@coreui/icons';
 
 const FeederDetail = () => {
-    // mock data
-    const petFeederStatus = {
-    roomTemp: "22°C",
-    feedingStatus: "Feeding", // 'Feeding'/ 'Standby'
-    roomHumidity: "45%",
-    roomAqi: "20",
-    envTemp: "25°C",
-    envHumidity: "60%",
-    envAqi: "91",
-    foodTankHumidity: "50%",
-    foodTankTemp: "20°C",
-    };
-
-    // const [petFeederStatus, setPetFeederStatus] = useState({
-    //     roomTemp: "",
-    //     feedingStatus: "Standby", // Default status
-    //     roomHumidity: "",
-    //     foodTankHumidity: "",
-    //     foodTankTemp: "",
-    // });
+    const [petFeederStatus, setPetFeederStatus] = useState({
+        roomTemp: "",
+        feedingStatus: "Standby",
+        roomHumidity: "",
+        roomAqi: "",
+        envTemp: "",
+        envHumidity: "",
+        envAqi: "",
+        foodTankHumidity: "",
+        foodTankTemp: "",
+    });
     
-    // useEffect(() => {
-    //     fetch('/data')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // Assuming the API returns an array and you are interested in the first item
-    //             const status = data[0];
-    //             setPetFeederStatus({
-    //                 roomTemp: `${status.room_temp}°C`,
-    //                 roomHumidity: `${status.room_hum}%`,
-    //                 foodTankTemp: `${status.tank_temp}°C`,
-    //                 foodTankHumidity: `${status.tank_hum}%`,
-    //                 // Update feedingStatus based on your logic or API response
-    //             });
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching data: ', error);
-    //         });
-    // }, []);
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/pet-feeder-api/v3/data')
+            .then(response => response.json())
+            .then(data => {
+                const status = data[0];
+                console.log(status)
+                setPetFeederStatus({
+                    roomTemp: `${status.room_temp}°C`,
+                    roomHumidity: `${status.room_hum}%`,
+                    roomAqi: `${status.room_pm}`,
+                    envTemp: `${status.env_temp}°C`,
+                    envHumidity: `${status.env_hum}%`,
+                    envAqi: `${status.env_pm}`,
+                    foodTankHumidity: `${status.tank_hum}%`,
+                    foodTankTemp: `${status.tank_temp}°C`,
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data: ', error);
+            });
+    }, []);
 
     const handleQuickFeed = (boxNumber) => {
         console.log(`Feeding from box ${boxNumber}`);
-        // post to backend
+
+        fetch('http://127.0.0.1:8080/pet-feeder-api/v3/post-portion-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ por: parseInt(boxNumber) }),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.error('Error posting data:', error);
+        });
     };
 
     return (

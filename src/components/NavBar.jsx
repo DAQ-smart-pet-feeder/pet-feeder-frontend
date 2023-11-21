@@ -22,9 +22,9 @@ const Navbar = () => {
                     <li>
                         <Link to="/behavior">Behavior Record</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/contact">More</Link>
-                    </li>
+                    </li> */}
                 </ul>
             </nav>
         </div>
