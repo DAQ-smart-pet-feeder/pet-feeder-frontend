@@ -36,12 +36,10 @@ const BehaviorRecord = () => {
         setGroupedBehaviorHistory(groupedData);
     }, []);
 
-    // Get current records
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentDates = Object.keys(groupedBehaviorHistory).slice(indexOfFirstRecord, indexOfLastRecord);
 
-    // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
@@ -51,7 +49,7 @@ const BehaviorRecord = () => {
                 <h1>Pet Behavior History</h1>
                 {currentDates.map((date) => (
                     <div key={date} className="date-group">
-                        <h3 className="date-header">{date}</h3>
+                        <h2 className="date-header">{date}</h2>
                         {groupedBehaviorHistory[date].map((entry, index) => (
                             <div key={index} className="behavior-record">
                                 <span>{entry.time}</span>

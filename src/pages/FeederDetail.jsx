@@ -11,6 +11,7 @@ import QuickFeed from "../components/QuickFeed";
 import '../styles/FeederDetail.css';
 import CIcon from '@coreui/icons-react';
 import { cilHouse, cilCloudy, cilPaw } from '@coreui/icons';
+import WeatherCard from "../components/WeatherCard";
 
 const FeederDetail = () => {
     const [petFeederStatus, setPetFeederStatus] = useState({
@@ -24,7 +25,7 @@ const FeederDetail = () => {
         foodTankHumidity: "",
         foodTankTemp: "",
     });
-    
+
     useEffect(() => {
         fetch('http://127.0.0.1:8080/pet-feeder-api/v3/data')
             .then(response => response.json())
@@ -57,18 +58,18 @@ const FeederDetail = () => {
             },
             body: JSON.stringify({ por: parseInt(boxNumber) }),
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Network response was not ok.');
-        })
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch(error => {
-            console.error('Error posting data:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error posting data:', error);
+            });
     };
 
     return (
@@ -77,7 +78,8 @@ const FeederDetail = () => {
             <div className="lock-font">
                 <div className="feeder-container">
                     <div className="data-container">
-                        <h1 className="lock-font">Pet Feeder Status</h1>
+                        <div className="header-text">Pet Feeder Status</div>
+                        {/* <WeatherCard/> */}
                         <div className="block">
                             <RoomData
                                 temp={petFeederStatus.roomTemp}
@@ -104,14 +106,16 @@ const FeederDetail = () => {
                     </div>
                     <div className="tank-and-status-container">
                         <div className="image-container">
-                            <img src={tankLevelImg} alt="tank"/> 
+                            <img src={bowlImg} alt="tank" />
                         </div>
                         {/* TODO: write function to show each pic rely with food level from api */}
                         <div className="feeding-status-container">
                             <FeedingStatus status={petFeederStatus.feedingStatus} />
                         </div>
                     </div>
-                    <QuickFeed onFeed={handleQuickFeed} />
+                    <div className="test">
+                        <QuickFeed onFeed={handleQuickFeed} />
+                    </div>
                 </div>
             </div>
         </div>

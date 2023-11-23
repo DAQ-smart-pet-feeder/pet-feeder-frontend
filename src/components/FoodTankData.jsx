@@ -1,13 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import "../styles/TankData.css"
+import { LiaPercentageSolid } from "react-icons/lia";
 
-const FoodTankData = ({ humidity, temp }) => {
+const TankData = ({ temp, humidity }) => {
+    const navigate = useNavigate();
+
+    const navigateToGraphs = () => {
+        navigate('/tank-data');
+    };
+
     return (
-        <div>
-            <h2>Food Tank Data</h2>
-            <p><strong>Humidity:</strong> {humidity}</p>
-            <p><strong>Temperature:</strong> {temp}</p>
+        <div className="tank-data" onClick={navigateToGraphs}>
+            <LiaPercentageSolid />
+            <h1>Food Tank Data</h1>
+            <p>Temperature: {temp}</p>
+            <p>Humidity: {humidity}</p>
         </div>
     );
 };
 
-export default FoodTankData;
+export default TankData;

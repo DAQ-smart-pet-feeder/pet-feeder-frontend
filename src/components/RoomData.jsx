@@ -1,12 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import "../styles/RoomData.css"
+import { LiaHomeSolid } from "react-icons/lia";
 
 const RoomData = ({ temp, humidity, pm }) => {
+    const navigate = useNavigate();
+
+    const navigateToGraphs = () => {
+        navigate('/room-data');
+    };
+
     return (
-        <div>
-            <h2>Room Data</h2>
-            <p><strong>Temperature:</strong> {temp}</p>
-            <p><strong>Humidity:</strong> {humidity}</p>
-            <p><strong>AQI:</strong> {pm}</p>
+        <div className="room-data" onClick={navigateToGraphs}>
+            <LiaHomeSolid />
+            <h1>Room Data</h1>
+            <p>Temperature: {temp}</p>
+            <p>Humidity: {humidity}</p>
         </div>
     );
 };

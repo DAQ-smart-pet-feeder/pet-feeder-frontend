@@ -16,6 +16,7 @@
     border-radius: 20px;
     padding: 10px;
     background-color: rgb(220, 220, 220);
+    font-size: 20px;
 }
 
 .add-box {
@@ -40,4 +41,40 @@
 
 .button-add {
     font-size: x-large;
+}
+
+.button-74 {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 30px;
+    box-shadow: #000000 4px 4px 0 0;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 15px;
+    font-family: "gaegu", sans-serif;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-74:hover {
+    background-color: #d9d9d9;
+}
+
+.button-74:active {
+    box-shadow: #000000 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    .button-74 {
+        min-width: 120px;
+        padding: 0 25px;
+    }
 }

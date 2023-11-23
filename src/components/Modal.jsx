@@ -28,8 +28,8 @@ const Modal = ({ isVisible, onClose, onSave }) => {
                         <input type="number" name="portion" />
                     </label>
                     <br/>
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={onClose}>Close</button>
+                    <button className="button-17" type="submit">Save</button>
+                    <button className="button-17" type="button" onClick={onClose}>Close</button>
                 </form>
             </div>
         </div>

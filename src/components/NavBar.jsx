@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/NavBar.css';
+import { LiaDogSolid } from "react-icons/lia";
 
 const Navbar = () => {
     return (
         <div className='lock-font'>
             <nav className="navbar">
                 <div className="logo">
-                    <h1>Smart Pet Feeder</h1>
+                    <LiaDogSolid />Smart Pet Feeder
                 </div>
                 <ul>
                     <li>

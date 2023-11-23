@@ -48,12 +48,10 @@ const FeedRecord = () => {
         setGroupedFeedingHistory(groupedData);
     }, []);
 
-    // Get current records
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentDates = Object.keys(groupedFeedingHistory).slice(indexOfFirstRecord, indexOfLastRecord);
 
-    // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
@@ -63,7 +61,7 @@ const FeedRecord = () => {
                 <h1>Feeding History</h1>
                 {currentDates.map((date) => (
                     <div key={date} className="date-group">
-                        <h3 className="date-header">{date}</h3>
+                        <h2 className="date-header">{date}</h2>
                         {groupedFeedingHistory[date].map((entry, index) => (
                             <div key={index} className="feeding-record">
                                 <span>Time: {entry.time}</span>

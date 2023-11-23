@@ -121,8 +121,8 @@ const MealPlan = () => {
     return (
         <div className='lock-font'>
             <NavBar />
+            <div className='header-text'>Meal Plan</div>
             <div className='meal-plan-container'>
-                <button onClick={() => setModalVisible(true)}>Add Schedule</button>
                 {mealPlans.length === 0 ? (
                     <div className="no-schedule-message">
                         <h1>No Schedules Set</h1>
@@ -144,6 +144,7 @@ const MealPlan = () => {
                         </div>
                     ))
                 )}
+                <button className="button-74" onClick={() => setModalVisible(true)}>Add Schedule</button>
                 <Modal 
                     isVisible={modalVisible} 
                     onClose={() => setModalVisible(false)} 

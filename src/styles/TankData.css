@@ -1,0 +1,27 @@
+.tank-data {
+    cursor: pointer;
+}
+
+.tank-data-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center; 
+}
+
+.chart-container {
+    width: 100%; 
+    max-width: 600px; 
+    margin: 20px; 
+}
+
+.small-chart {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+button {
+    margin: 20px 0;
+}
