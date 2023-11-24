@@ -5,12 +5,19 @@ import RoomData from '../components/RoomData';
 import EnvData from '../components/EnvData';
 import FoodTankData from '../components/FoodTankData';
 import FeedingStatus from '../components/FeedingStatus';
-import bowlImg from '../img/bowl.png';
-import tankLevelImg from '../img/tanklevel/100percent.png';
+import tankLevel100Img from '../img/tanklevel/100percent.png';
+import tankLevel90Img from '../img/tanklevel/90percent.png';
+import tankLevel80Img from '../img/tanklevel/80percent.png';
+import tankLevel70Img from '../img/tanklevel/70percent.png';
+import tankLevel60Img from '../img/tanklevel/60percent.png';
+import tankLevel50Img from '../img/tanklevel/50percent.png';
+import tankLevel40Img from '../img/tanklevel/40percent.png';
+import tankLevel30Img from '../img/tanklevel/30percent.png';
+import tankLevel20Img from '../img/tanklevel/20percent.png';
+import tankLevel10Img from '../img/tanklevel/10percent.png';
+import tankLevel0Img from '../img/tanklevel/0percent.png';
 import QuickFeed from "../components/QuickFeed";
 import '../styles/FeederDetail.css';
-import CIcon from '@coreui/icons-react';
-import { cilHouse, cilCloudy, cilPaw } from '@coreui/icons';
 import WeatherCard from "../components/WeatherCard";
 
 const FeederDetail = () => {
@@ -25,6 +32,25 @@ const FeederDetail = () => {
         foodTankHumidity: "",
         foodTankTemp: "",
     });
+
+    const [tankLevel, setTankLevel] = useState(0);
+    const [feedingStatus, setFeedingStatus] = useState("Standby");
+
+    const getTankLevelImage = () => {
+        switch (true) {
+            case (tankLevel > 90): return tankLevel100Img;
+            case (tankLevel > 80): return tankLevel90Img;
+            case (tankLevel > 70): return tankLevel80Img;
+            case (tankLevel > 60): return tankLevel70Img;
+            case (tankLevel > 50): return tankLevel60Img;
+            case (tankLevel > 40): return tankLevel50Img;
+            case (tankLevel > 30): return tankLevel40Img;
+            case (tankLevel > 20): return tankLevel30Img;
+            case (tankLevel > 10): return tankLevel20Img;
+            case (tankLevel > 0): return tankLevel10Img;
+            default: return tankLevel0Img;
+        }
+    };
 
     useEffect(() => {
         fetch('http://127.0.0.1:8080/pet-feeder-api/v3/data')
@@ -45,6 +71,17 @@ const FeederDetail = () => {
             })
             .catch(error => {
                 console.error('Error fetching data: ', error);
+            });
+
+        fetch('http://localhost:8080/pet-feeder-api/v3/get-tank-data')
+            .then(response => response.json())
+            .then(data => {
+                const tankData = data[0];
+                setTankLevel(tankData.remaining_percentage);
+                setFeedingStatus(tankData.feeding_status === 1 ? "Feeding" : "Standby");
+            })
+            .catch(error => {
+                console.error('Error fetching tank data: ', error);
             });
     }, []);
 
@@ -86,7 +123,6 @@ const FeederDetail = () => {
                                 humidity={petFeederStatus.roomHumidity}
                                 pm={petFeederStatus.roomAqi}
                             />
-                            {/* <CIcon icon={cilHouse} size="sm" /> */}
                         </div>
                         <div className="block">
                             <EnvData
@@ -94,23 +130,20 @@ const FeederDetail = () => {
                                 humidity={petFeederStatus.envHumidity}
                                 pm={petFeederStatus.envAqi}
                             />
-                            {/* <CIcon icon={cilCloudy} size="sm"/> */}
                         </div>
                         <div className="block">
                             <FoodTankData
                                 humidity={petFeederStatus.foodTankHumidity}
                                 temp={petFeederStatus.foodTankTemp}
                             />
-                            {/* <CIcon icon={cilPaw} size="sm"/> */}
                         </div>
                     </div>
                     <div className="tank-and-status-container">
                         <div className="image-container">
-                            <img src={bowlImg} alt="tank" />
+                            <img src={getTankLevelImage()} alt="tank" />
                         </div>
-                        {/* TODO: write function to show each pic rely with food level from api */}
                         <div className="feeding-status-container">
-                            <FeedingStatus status={petFeederStatus.feedingStatus} />
+                            <FeedingStatus status={feedingStatus} />
                         </div>
                     </div>
                     <div className="test">

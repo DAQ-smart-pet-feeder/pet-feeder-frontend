@@ -9,32 +9,50 @@ const BehaviorRecord = () => {
     const [recordsPerPage] = useState(3); // total records per page
 
     useEffect(() => {
-        const mockData = [
-            { date: '2023-11-15', time: '09:00', behavior: 'Pet Approaching' },
-            { date: '2023-11-15', time: '09:12', behavior: 'Pet Leaving' },
-            { date: '2023-11-14', time: '09:00', behavior: 'Pet Approaching' },
-            { date: '2023-11-14', time: '09:08', behavior: 'Pet Leaving' },
-            { date: '2023-11-13', time: '11:00', behavior: 'Pet Approaching' },
-            { date: '2023-11-13', time: '11:05', behavior: 'Pet Leaving' },
-            { date: '2023-11-13', time: '13:24', behavior: 'Pet Approaching' },
-            { date: '2023-11-13', time: '13:40', behavior: 'Pet Leaving' },
-            { date: '2023-11-12', time: '11:00', behavior: 'Pet Approaching' },
-            { date: '2023-11-12', time: '11:10', behavior: 'Pet Leaving' },
-            { date: '2023-11-12', time: '20:12', behavior: 'Pet Approaching' },
-            { date: '2023-11-12', time: '20:14', behavior: 'Pet Leaving' },
-            { date: '2023-11-11', time: '11:00', behavior: 'Pet Approaching' },
-            { date: '2023-11-11', time: '11:03', behavior: 'Pet Leaving' },
-            { date: '2023-11-11', time: '09:00', behavior: 'Pet Approaching' },
-            { date: '2023-11-11', time: '09:09', behavior: 'Pet Leaving' },
-        ];
-
-        const groupedData = mockData.reduce((acc, currentValue) => {
-            (acc[currentValue.date] = acc[currentValue.date] || []).push(currentValue);
-            return acc;
-        }, {});
-
-        setGroupedBehaviorHistory(groupedData);
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/pet-feeder-api/v3/get-behavior-data');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+    
+                const transformedData = data.map(item => {
+                    const [date, time] = item.ts.split(' ');
+                    const formattedTime = time.slice(0, 5); // Extracts the HH:mm part
+                    const behavior = item.stat === 1 ? 'Pet Approaching' : 'Pet Leaving';
+                    return { date, time: formattedTime, behavior };
+                });
+    
+                transformedData.sort((a, b) => {
+                    const dateTimeA = `${a.date} ${a.time}`;
+                    const dateTimeB = `${b.date} ${b.time}`;
+                    return dateTimeB.localeCompare(dateTimeA);
+                });
+    
+                const groupedData = transformedData.reduce((acc, currentValue) => {
+                    (acc[currentValue.date] = acc[currentValue.date] || []).push(currentValue);
+                    return acc;
+                }, {});
+    
+                // Sort the dates in descending order
+                const sortedDates = Object.keys(groupedData).sort((a, b) => b.localeCompare(a));
+                const sortedGroupedData = {};
+                sortedDates.forEach(date => {
+                    sortedGroupedData[date] = groupedData[date];
+                });
+    
+                setGroupedBehaviorHistory(sortedGroupedData);
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        };
+    
+        fetchData();
     }, []);
+    
+    
+    
 
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
@@ -46,7 +64,7 @@ const BehaviorRecord = () => {
         <div className='lock-font'>
             <NavBar />
             <div className="behavior-record-container">
-                <h1>Pet Behavior History</h1>
+                <h4>Pet Behavior History</h4>
                 {currentDates.map((date) => (
                     <div key={date} className="date-group">
                         <h2 className="date-header">{date}</h2>

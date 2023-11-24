@@ -17,17 +17,17 @@ const Modal = ({ isVisible, onClose, onSave }) => {
                             </label>
                         ))}
                     </fieldset>
-                    <br/>
+                    <br />
                     <label>
                         Time:
                         <input type="time" name="time" />
                     </label>
-                    <br/>
+                    <br />
                     <label>
                         Food Portion:
-                        <input type="number" name="portion" />
+                        <input type="number" name="portion" min="1" max="10" step="1"/>
                     </label>
-                    <br/>
+                    <br />
                     <button className="button-17" type="submit">Save</button>
                     <button className="button-17" type="button" onClick={onClose}>Close</button>
                 </form>

@@ -125,7 +125,7 @@ const MealPlan = () => {
             <div className='meal-plan-container'>
                 {mealPlans.length === 0 ? (
                     <div className="no-schedule-message">
-                        <h1>No Schedules Set</h1>
+                        <h4>No Schedules Set</h4>
                     </div>
                 ) : (
                     mealPlans.map((plan, index) => (
