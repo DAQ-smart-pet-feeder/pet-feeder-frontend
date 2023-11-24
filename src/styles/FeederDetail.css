@@ -89,6 +89,7 @@
     position: relative;
     -webkit-animation: up 2s cubic-bezier(.39, 0, .38, 1);
     margin-top: 200px;
+    margin-right: 45px;
 }
 
 

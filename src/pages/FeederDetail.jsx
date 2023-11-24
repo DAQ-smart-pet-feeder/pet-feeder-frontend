@@ -19,6 +19,7 @@ import tankLevel0Img from '../img/tanklevel/0percent.png';
 import QuickFeed from "../components/QuickFeed";
 import '../styles/FeederDetail.css';
 import WeatherCard from "../components/WeatherCard";
+import Swal from 'sweetalert2';
 
 const FeederDetail = () => {
     const [petFeederStatus, setPetFeederStatus] = useState({
@@ -88,13 +89,22 @@ const FeederDetail = () => {
     const handleQuickFeed = (boxNumber) => {
         console.log(`Feeding from box ${boxNumber}`);
 
-        fetch('http://127.0.0.1:8080/pet-feeder-api/v3/post-portion-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ por: parseInt(boxNumber) }),
-        })
+        if (tankLevel === 0) {
+            Swal.fire({
+                title: 'Unable to Feed',
+                text: 'The food tank is empty. Please refill the tank to continue feeding.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        } else {
+            console.log(`Feeding from box ${boxNumber}`);
+            fetch('http://127.0.0.1:8080/pet-feeder-api/v3/post-portion-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ por: parseInt(boxNumber) }),
+            })
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -107,6 +117,7 @@ const FeederDetail = () => {
             .catch(error => {
                 console.error('Error posting data:', error);
             });
+        }
     };
 
     return (
