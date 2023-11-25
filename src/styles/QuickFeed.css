@@ -53,22 +53,7 @@
     box-shadow: none !important;
 }
 
-.swal2-popup .swal2-styled.swal2-confirm {
-    background-color: #aaa !important;
-    font-family: 'gaegu', cursive;
-}
-
-.swal2-popup .swal2-styled:focus {
-    background-color: #247ba2 !important;
-    font-family: 'gaegu', cursive;
-}
-
-.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover {
-    background-color: #247ba2 !important;
-} 
-
-div#swal2-html-container{
-    font-size: 24px;
+.swal2-html-container {
     font-family: 'Gaegu', cursive;
-    color: theme('colors.metal');
+    font-size: medium;
 }

@@ -18,6 +18,11 @@
     box-shadow: 5px 5px 5px #ccc;
 }
 
+.block:hover {
+    background-color: #f7e1bf;
+    cursor: pointer;
+}
+
 .image-container img {
     max-width: 100%;
     height: auto;
