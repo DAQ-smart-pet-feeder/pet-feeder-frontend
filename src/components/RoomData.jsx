@@ -16,6 +16,7 @@ const RoomData = ({ temp, humidity, pm }) => {
             <h1>Room Data</h1>
             <p>Temperature: {temp}</p>
             <p>Humidity: {humidity}</p>
+            <p>PM 2.5: {pm}</p>
         </div>
     );
 };

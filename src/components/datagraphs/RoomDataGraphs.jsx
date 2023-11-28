@@ -100,14 +100,19 @@ const RoomDataGraphs = () => {
         axios.get('http://localhost:8080/pet-feeder-api/v3/visual/temp')
             .then(response => {
                 const tempData = response.data;
-    
-                // Transform the data for the scatter chart
+                console.log(tempData);
                 let scatterChartData = [];
                 tempData.forEach(item => {
-                    item.eating_time.forEach(time => {
-                        scatterChartData.push({ x: item.temp, y: time });
-                    });
+                    if (Array.isArray(item.eating_time)) {
+                        item.eating_time.forEach(time => {
+                            scatterChartData.push({ x: item.temp, y: time });
+                        });
+                    } else {
+                        scatterChartData.push({ x: item.temp, y: item.eating_time });
+                    }
                 });
+                
+                console.log(scatterChartData);
     
                 setScatterData1({
                     datasets: [{
@@ -126,11 +131,8 @@ const RoomDataGraphs = () => {
         axios.get('http://localhost:8080/pet-feeder-api/v3/visual/pm25')
             .then(response => {
                 const aqiData = response.data;
-    
-                // Transform the data for the scatter chart
                 let scatterChartData = [];
                 aqiData.forEach(item => {
-                    // Check if eating_time is an array or a single value
                     if (Array.isArray(item.eating_time)) {
                         item.eating_time.forEach(time => {
                             scatterChartData.push({ x: item.pm25, y: time });
@@ -157,11 +159,8 @@ const RoomDataGraphs = () => {
         axios.get('http://localhost:8080/pet-feeder-api/v3/visual/hum')
             .then(response => {
                 const humidityData = response.data;
-    
-                // Transform the data for the scatter chart
                 let scatterChartData = [];
                 humidityData.forEach(item => {
-                    // Check if eating_time is an array or a single value
                     if (Array.isArray(item.eating_time)) {
                         item.eating_time.forEach(time => {
                             scatterChartData.push({ x: item.hum, y: time });
@@ -212,7 +211,7 @@ const RoomDataGraphs = () => {
             x: {
                 title: {
                     display: true,
-                    text: 'AQI', // X-axis label
+                    text: 'PM 2.5', // X-axis label
                 },
             },
             y: {
