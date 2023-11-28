@@ -75,12 +75,12 @@ const RoomDataGraphs = () => {
             labels: labels,
             datasets: [
                 {
-                    label: 'Min AQI',
+                    label: 'Min PM2.5',
                     data: aqiMinData,
                     backgroundColor: 'rgba(102, 255, 255, 0.5)',
                 },
                 {
-                    label: 'Max AQI',
+                    label: 'Max PM2.5',
                     data: aqiMaxData,
                     backgroundColor: 'rgba(0, 102, 153, 0.5)',
                 }
@@ -104,7 +104,7 @@ const RoomDataGraphs = () => {
                     <h2>Humidity</h2>
                     <LineChart data={humidityData} className="small-chart" />
 
-                    <h2>AQI</h2>
+                    <h2>PM 2.5</h2>
                     <BarChart data={aqiData} className="small-chart" />
                 </div>
             </div>

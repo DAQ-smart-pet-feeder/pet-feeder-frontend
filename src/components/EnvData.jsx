@@ -1,4 +1,3 @@
-import "../styles/EnvData.css"
 import React from 'react';
 import { TiThermometer } from "react-icons/ti";
 import Swal from 'sweetalert2';
