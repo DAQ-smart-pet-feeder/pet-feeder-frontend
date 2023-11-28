@@ -153,9 +153,6 @@ const FeederDetail = () => {
                         <div className="image-container">
                             <img src={getTankLevelImage()} alt="tank" />
                         </div>
-                        <div className="feeding-status-container">
-                            <FeedingStatus status={feedingStatus} />
-                        </div>
                     </div>
                     <div className="test">
                         <QuickFeed onFeed={handleQuickFeed} />
