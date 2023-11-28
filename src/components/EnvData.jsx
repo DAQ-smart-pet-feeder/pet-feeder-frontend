@@ -42,7 +42,7 @@ const EnvData = ({ temp, humidity, pm }) => {
             <h1 onClick={showAdvice} className="env-data">Environment Data</h1>
             <p>Temperature: {temp}</p>
             <p>Humidity: {humidity}</p>
-            <p>AQI: {pm}</p>
+            <p>PM 2.5: {pm}</p>
         </div>
     );
 };
